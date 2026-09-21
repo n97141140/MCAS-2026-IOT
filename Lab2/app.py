@@ -13,6 +13,10 @@ current_index = 0  # 全域索引
 @app.route("/")
 def index():
     global current_index
+    if current_index > 2:
+        current_index = 0
+    if current_index < 0:
+        current_index = 2
     img = images[current_index]
     return render_template("index.html", image=img, idx=current_index, total=len(images))
 
