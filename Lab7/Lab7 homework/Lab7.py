@@ -16,20 +16,18 @@ Your work
 
 
 
-# 非數值型資料轉換成數值型資料
+# 非數值型資料轉換成數值型資料 (country, gender)
 _, data[:, 2] = np.unique(data[:, 2], return_inverse=True)
 _, data[:, 3] = np.unique(data[:, 3], return_inverse=True)
 
 
-# 去除無意義的特徵類別 (第0欄的 customer_id)
+# 去除無意義的特徵類別 (customer_id)
 data = np.delete(data, 0, axis=1)
 
-# 將整個陣列轉為浮點數型態，方便後續數值運算
 data = data.astype(float)
-
-
 X = data[:, :-1]
 y = data[:, -1]
+#標準化特徵 (StandardScaler)
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 pre_data = np.column_stack((X_scaled, y))
